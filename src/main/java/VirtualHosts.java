@@ -28,7 +28,7 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
  *
  * @author Dietmar Hechensteiner
  * @author Matthias Perktold
- * @since  2019-08-17
+ * @since 2019-08-17
  */
 public class VirtualHosts extends AbstractHandler {
 
@@ -38,7 +38,7 @@ public class VirtualHosts extends AbstractHandler {
 	{
 		response.setContentType("text/html; charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
-        Writer wr = response.getWriter();
+		Writer wr = response.getWriter();
 		wr.write("<!DOCTYPE HTML>\n");
 		wr.write("<html>\n");
 		wr.write("<head>\n");
@@ -79,10 +79,10 @@ public class VirtualHosts extends AbstractHandler {
 		sslContextFactory.setProvider("Conscrypt");
 
 		HttpConfiguration httpsConfig = new HttpConfiguration(httpConfig);
-        SecureRequestCustomizer src = new SecureRequestCustomizer();
-        src.setStsMaxAge(2000);
-        src.setStsIncludeSubDomains(true);
-        httpsConfig.addCustomizer(src);
+		SecureRequestCustomizer src = new SecureRequestCustomizer();
+		src.setStsMaxAge(2000);
+		src.setStsIncludeSubDomains(true);
+		httpsConfig.addCustomizer(src);
 
 		ServerConnector https = new ServerConnector(server,
 			new SslConnectionFactory(sslContextFactory, HttpVersion.HTTP_1_1.asString()),
@@ -90,7 +90,7 @@ public class VirtualHosts extends AbstractHandler {
 		https.setPort(443);
 		https.setIdleTimeout(500000);
 
-		server.setConnectors(new Connector[]{http, https});
+		server.setConnectors(new Connector[] { http, https});
 		server.setHandler(new HandlerList(new SecuredRedirectHandler(), new VirtualHosts()));
 
 		server.start();
