@@ -4,7 +4,7 @@ Example project to show the problem described in [Jetty issue 2896](https://gith
 This is a minimal example implementing a server that has two wildcard certificates `*.alfa.org` and `*.beta.org`.
 The problem is that the server always uses the same certificate, regardless of the host specified by the client.
 
-To reproduce the problem, first add the following lines to your `hosts` (`/etc/hosts` in Unix, `C:\WINDOWS\System32\drivers\etc` in Windows).
+To reproduce the problem, first add the following lines to your `hosts` file (`/etc/hosts` in Unix, `C:\WINDOWS\System32\drivers\etc\hosts` in Windows).
 
 ```
 127.0.0.1		test.alfa.org
